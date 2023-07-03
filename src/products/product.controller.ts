@@ -8,11 +8,11 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { ProduceDto } from './product.dto';
-import { ProductService } from './product.service';
 import { ResponseData } from 'src/global/globalClass';
 import { HttpMEssage, HttpStatus } from 'src/global/globalEnum';
 import { Product } from 'src/models/product.model';
+import { ProduceDto } from './product.dto';
+import { ProductService } from './product.service';
 
 @Controller('products')
 export class ProduceController {
@@ -22,6 +22,7 @@ export class ProduceController {
   getAllProduct(): ResponseData<Product[]> {
     try {
       return new ResponseData<Product[]>(
+        
         this.produceService.getAllProduct(),
         HttpStatus.SUCCESS,
         HttpMEssage.SUCCESS,
