@@ -36,15 +36,15 @@ export class ProduceController {
   }
 
   @Post()
-  createProduct(@Body() produce: ProduceDto): ResponseData<string> {
+  createProduct(@Body() product: ProduceDto): ResponseData<ProduceDto> {
     try {
-      return new ResponseData<string>(
-        this.produceService.createProduce(produce),
+      return new ResponseData<ProduceDto>(
+        product,
         HttpStatus.SUCCESS,
         HttpMEssage.SUCCESS,
       );
     } catch {
-      return new ResponseData<string>(
+      return new ResponseData<ProduceDto>(
         null,
         HttpStatus.ERROR,
         HttpMEssage.ERROR,
