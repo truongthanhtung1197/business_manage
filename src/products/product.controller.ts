@@ -22,7 +22,6 @@ export class ProduceController {
   getAllProduct(): ResponseData<Product[]> {
     try {
       return new ResponseData<Product[]>(
-        
         this.produceService.getAllProduct(),
         HttpStatus.SUCCESS,
         HttpMEssage.SUCCESS,
