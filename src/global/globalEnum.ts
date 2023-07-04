@@ -3,6 +3,6 @@ export enum HttpStatus {
   SUCCESS = 200,
 }
 export enum HttpMEssage {
-  ERROR = 'Server Internal Error',
-  SUCCESS = 'SErver REsponse Success',
+  ERROR = "Server Internal Error",
+  SUCCESS = "SErver REsponse Success",
 }

@@ -1,21 +1,17 @@
 import { Expose } from 'class-transformer';
-import { IsNotEmpty, IsNumber, MinLength } from 'class-validator';
-import { baseDto } from 'src/common/base.dto';
-export class ProduceDto extends baseDto {
+import { IsNotEmpty } from 'class-validator';
+export class ProductDto {
   @Expose()
   name: string;
   @Expose()
   @IsNotEmpty()
-  price?: number;
+  price: number;
   @Expose()
-  origin_price?: number;
-  @MinLength(5, {
-    message: 'min leng ssd',
-  })
+  origin_price: number;
   @Expose()
   description: string;
   @Expose()
-  img?: number[];
+  img: string;
   @Expose()
   quantity: number;
   @Expose()
