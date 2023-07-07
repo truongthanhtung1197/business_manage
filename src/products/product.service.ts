@@ -1,28 +1,28 @@
-import { Injectable } from "@nestjs/common";
-import { Product } from "src/models/product.model";
-import { ProductDto } from "./product.dto";
+import { Injectable } from '@nestjs/common';
+import { Product } from 'src/models/product.model';
+import { ProductDto } from './product.dto';
 
 @Injectable()
 export class ProductService {
   private products: Product[] = [
     {
-      name: "sds",
+      name: 'sds',
       category_id: 0,
-      description: "description produce",
+      description: 'description produce',
       price: 100000,
       product_id: 1,
       quantity: 100,
-      img: "1212",
+      img: '1212',
       origin_price: 300000,
     },
     {
-      name: "sds2",
+      name: 'sds2',
       category_id: 0,
-      description: "description produce 2",
+      description: 'description produce 2',
       price: 150000,
       product_id: 2,
       quantity: 50,
-      img: "4444",
+      img: '4444',
       origin_price: 350000,
     },
   ];
