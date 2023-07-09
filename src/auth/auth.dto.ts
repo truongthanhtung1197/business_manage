@@ -29,3 +29,12 @@ export class UserDto {
   @IsOptional()
   salary: string;
 }
+
+export class LoginDto {
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+
+  @IsNotEmpty()
+  password: string;
+}

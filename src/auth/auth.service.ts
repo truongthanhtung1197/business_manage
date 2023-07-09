@@ -1,16 +1,16 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import * as argon from 'argon2';
-import { UserDto } from './auth.dto';
-import { DataSource } from 'typeorm';
-import { Users } from 'src/entities/user.entity';
 import { omit } from 'ramda';
+import { Users } from 'src/entities/user.entity';
+import { DataSource } from 'typeorm';
+import { LoginDto, UserDto } from './auth.dto';
 
 @Injectable({})
 export class AuthService {
   constructor(private dataSource: DataSource) {}
   async createUser(user: UserDto) {
     try {
-      const hasPassword = await argon.hash('password');
+      const hasPassword = await argon.hash(user.password);
       await this.dataSource
         .createQueryBuilder()
         .insert()
@@ -30,12 +30,30 @@ export class AuthService {
     }
   }
 
-  async login(user: UserDto) {
-    const firstUser = await this.dataSource
-      .getRepository(Users)
-      .createQueryBuilder('user')
-      .where('user.email = :email', { email: user.email })
-      .getOne();
-    console.log('firstUser', firstUser);
+  async login(user: LoginDto) {
+    try {
+      const firstUser = await this.dataSource
+        .getRepository(Users)
+        .createQueryBuilder('user')
+        .where('user.email = :email', { email: user.email })
+        .getOne();
+
+      if (!firstUser) throw new ForbiddenException('user not found');
+
+      if (firstUser) {
+        const verifyPassword = await argon.verify(
+          firstUser?.password,
+          user?.password
+        );
+
+        if (verifyPassword) {
+          return omit(['password'], firstUser);
+        } else {
+          throw new ForbiddenException('invalid password');
+        }
+      }
+    } catch (error) {
+      throw new ForbiddenException(error.message);
+    }
   }
 }
