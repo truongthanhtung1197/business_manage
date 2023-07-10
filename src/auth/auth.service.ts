@@ -35,7 +35,9 @@ export class AuthService {
       const firstUser = await this.dataSource
         .getRepository(Users)
         .createQueryBuilder('user')
-        .where('user.email = :email', { email: user.email })
+        .where('user.email = :email', {
+          email: user.email,
+        })
         .getOne();
 
       if (!firstUser) throw new ForbiddenException('user not found');

@@ -7,14 +7,14 @@ import {
   ParseIntPipe,
   Post,
   Put,
-} from "@nestjs/common";
-import { ResponseData } from "src/global/globalClass";
-import { HttpMEssage, HttpStatus } from "src/global/globalEnum";
-import { Product } from "src/models/product.model";
-import { ProductDto } from "./product.dto";
-import { ProductService } from "./product.service";
+} from '@nestjs/common';
+import { ResponseData } from 'src/global/globalClass';
+import { HttpMEssage, HttpStatus } from 'src/global/globalEnum';
+import { Product } from 'src/models/product.model';
+import { ProductDto } from './product.dto';
+import { ProductService } from './product.service';
 
-@Controller("products")
+@Controller('products')
 export class ProduceController {
   constructor(private readonly produceService: ProductService) {}
 
@@ -52,8 +52,8 @@ export class ProduceController {
     }
   }
 
-  @Get(":id")
-  getProductById(@Param("id", ParseIntPipe) id: number): ResponseData<Product> {
+  @Get(':id')
+  getProductById(@Param('id', ParseIntPipe) id: number): ResponseData<Product> {
     try {
       return new ResponseData<Product>(
         this.produceService.getProductById(id),
@@ -69,9 +69,9 @@ export class ProduceController {
     }
   }
 
-  @Put(":id")
+  @Put(':id')
   updateProduct(
-    @Param("id", ParseIntPipe) id: number,
+    @Param('id', ParseIntPipe) id: number,
     @Body() product: ProductDto
   ): ResponseData<ProductDto> {
     try {
@@ -89,8 +89,8 @@ export class ProduceController {
     }
   }
 
-  @Delete(":id")
-  deleteProduct(@Param("id", ParseIntPipe) id: number): ResponseData<boolean> {
+  @Delete(':id')
+  deleteProduct(@Param('id', ParseIntPipe) id: number): ResponseData<boolean> {
     try {
       return new ResponseData<boolean>(
         this.produceService.deleteProduct(id),

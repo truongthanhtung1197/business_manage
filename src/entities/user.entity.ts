@@ -1,5 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { UserRole } from 'src/auth/auth.dto';
+import { Column, Entity, PrimaryGeneratedColumn, Unique } from 'typeorm';
 
 @Entity()
 @Unique(['email'])
@@ -10,6 +10,11 @@ export class Users {
   @Column()
   name: string;
 
+
+
+
+
+  
   @Column()
   email: string;
 
