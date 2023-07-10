@@ -20,7 +20,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "src/**/*.{js, json}": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
+    "src/**/*.{js, json,ts}": "prettier --write --single-quote --tab-width-4 \"src/**/*.ts\" \"test/**/*.ts\""
   },
   "husky": {
     "hooks": {
